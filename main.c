@@ -19,15 +19,14 @@ int SelectColumn(Board* board){
         //  check if column is in matrix
         if (column <=0 || column >= board->column)
         {
-            // check if column is full
-            if (board->gameBoard[0][column] != 0)
-            {
-                printf("Column is full");
-                continue;
-            }
-            else{
+            
                 printf("error");
-            }
+            continue;
+        }
+        // check if column is full
+        else if (board->gameBoard[0][column] != 0)
+        {
+            printf("Column is full");
             continue;
         }
         else{

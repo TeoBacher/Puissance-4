@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "game.h"
+#include "player.h"
 
 int main(void)
 {
@@ -9,19 +10,25 @@ int main(void)
 
     // Init menu
     while (menu)
-    {
-        // Init players
-            // Player i : name, color (auto), turn = 0
+    {        
+        pritnf("Bienvenu dans le jeu 'PUISSANCE 4\n");
+
+        // les joueur doivent donner speudo
+        printf("Entrer le speudo du player 1 :\n");
+        scanf("%s", player1[i]);
+        printf("Entrer le speudo du player 2 :\n");
+        scanf("%s", player[i]);
 
         // Init grid (board)
 
-        // menu = 0;
-        // isRunning = 1
+        menu = 0;
+        isRunning = 1
     }
 
     // Game loop
     while (isRunning)
     {
+        printf("Début du jeu\n");
         // Check if grid is full, if so, end game
 
         // for each player

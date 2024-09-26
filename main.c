@@ -2,22 +2,49 @@
 #include <stdlib.h>
 #include "game.h"
 #include "player.h"
+#include "board.h"
 
-void game(Player *player){
 
-    //Check if grid is full
-    // if (GridIsFull())
-    // {
-    //     printf("Gris is full, equality");
-    //     isRunning = 0;
-    // }
+int SelectColumn(Board board){
+    int select;
+    int column;
+    while (select == 0)
+    {
+        printf("Select column : ");
+        scanf("%s",column);
+        if (column <=0 || column >= board.column  )
+        {
+            printf("error");
+            SelectColumn(board);
+        }
+        else{
+            select = 1 ;
+        }
+    }
+    return column;
+    
+}
 
-    //Select column  
-    //int Column = SelectColumn();
 
-    // Upgrade turn number player
-    player->playedTurnCounter += 1;
 
+void game(Player **listPlayer,Board board,int isRunning){
+
+    while (isRunning)
+    {
+
+        // //    Check if grid is full
+        // if (GridIsFull())
+        // {
+        //     // call function endgame()
+        //     printf("Gris is full, equality");
+        //     isRunning = 0;
+        // }
+
+        //Select column  
+        int column = SelectColumn(board);
+
+    }
+    
     //Update matrix
     //updateGrid();
     
@@ -31,10 +58,11 @@ void game(Player *player){
     //game(player, isRunning);
 }
 
+
 int main(void)
 {
     int menu = 1;
-    //int isRunning = 0;
+    int isRunning = 0;
 
     // Init menu
     while (menu)
@@ -71,29 +99,12 @@ int main(void)
         }
 
         // Init board (default 6x7)
-        initBoard(6, 7);
+        Board board = initBoard(6,7);
 
         menu = 0;
+        game(listPlayer, board ,isRunning);
         //isRunning = 1;
     }
 
-    // Game loop
-    // while (isRunning)
-    // {
-    //     printf("Début du jeu\n");
-        //game();
-
-        // Check if grid is full, if so, end game
-
-        // for each player
-        // ask  to select a column
-        // check if column is valid
-        // if not valid, ask again
-        // if valid, play and update turn count
-        // Update matrix && display grid
-        // Check if player won
-
-        // Repeat
-    //}
     return 0;
 }

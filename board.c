@@ -3,7 +3,7 @@
 #include "board.h"
 
 
-void initBoard(int rows, int columns) {
+Board *initBoard(int rows, int columns) {
     if (rows < 2 || columns < 2) {
         printf("La grille de jeux ne peut pas être plus petite que 2 x 2 !\n");
         // TODO 200 : call back menu to avoid crash
@@ -15,22 +15,24 @@ void initBoard(int rows, int columns) {
         printf("Erreur lors de l'allocation de la mémoire pour la grille de jeux !\n");
     }
 
-    // Set board size
+    // Set board value
     board->row = rows;
     board->column = columns;
+    board->gameBoard = malloc(rows * sizeof(int *));
 
-    // Build the game board
-    int **gameBoard = malloc(rows * sizeof(int *));
+    // Init board matrix
     for (int i = 0; i < rows; i++) {
-        gameBoard[i] = malloc(columns * sizeof(int));
+        board->gameBoard[i] = calloc(columns, sizeof(int));
     }
 
     // Print the game board
     // TODO DELETE
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            printf("%d ", gameBoard[i][j]);
+            printf("%d ", board->gameBoard[i][j]);
         }
         printf("\n");
     }
+
+    return board;
 }

@@ -36,3 +36,15 @@ Board *initBoard(int rows, int columns) {
 
     return board;
 }
+
+void updateGrid( Board board,int player,int column){
+    for (int i = column; i >= 0; i--)
+    {
+        if (board.gameBoard[i][column]==0)
+        {
+            board.gameBoard[i][column]= player;
+        }
+        
+    }
+    
+}

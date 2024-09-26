@@ -12,10 +12,17 @@ int SelectColumn(Board board){
     {
         printf("Select column : ");
         scanf("%s",column);
-        if (column <=0 || column >= board.column  )
+        if (column <=0 || column >= board.column)
         {
-            printf("error");
-            SelectColumn(board);
+            if (board.gameBoard[0][column] =! 0)
+            {
+                printf("Column is full");
+                continue;
+            }
+            else{
+                printf("error");
+            }
+            continue;
         }
         else{
             select = 1 ;
@@ -27,12 +34,16 @@ int SelectColumn(Board board){
 
 
 
-void game(Player **listPlayer,Board board,int isRunning){
-
+void game(Game *g, Board board, int isRunning){
+ 
     while (isRunning)
     {
 
-        // //    Check if grid is full
+
+
+        for (int i = 0; i < g->playerCount; i++)
+        {
+                    // //    Check if grid is full
         // if (GridIsFull())
         // {
         //     // call function endgame()
@@ -40,14 +51,18 @@ void game(Player **listPlayer,Board board,int isRunning){
         //     isRunning = 0;
         // }
 
-        //Select column  
-        int column = SelectColumn(board);
+            //Select column  
+            int column = SelectColumn(board);
+            // Update matrix
+            updateGrid(board, i, column);
+        }
+        
 
+
+    
     }
     
-    //Update matrix
-    //updateGrid();
-    
+
     //Display Board
     //DisplayGrid();
 
@@ -67,31 +82,32 @@ int main(void)
     // Init menu
     while (menu)
     {
-        Player **listPlayer = malloc(sizeof(Player));
+        Game *g = malloc(sizeof(game));
 
-        int playerCount = 0;
+        g->players = malloc(sizeof(Player)*6);
+
         printf("Bienvenu dans le jeu 'PUISSANCE 4\n");
 
         // Number of player
         printf("Entrer le nombre de joueur : ");
-        scanf("%d", &playerCount);
+        scanf("%d", g->playerCount);
 
-        for (int i = 0; i < playerCount; i++)
+        for (int i = 0; i < g->playerCount; i++)
         {
-            listPlayer[i] = InitPlayer(i);
+            g->players[i] = InitPlayer(i);
         }
 
         // Display player
-        for (int i = 0; i < playerCount; i++)
+        for (int i = 0; i < g->playerCount; i++)
         {
-            printf("Joueur %d : %s\n", i, listPlayer[i]->name);
+            printf("Joueur %d : %s\n", i, g->players[i]->name);
         }
 
         // Init board (default 6x7)
         Board board = initBoard(6,7);
 
         menu = 0;
-        game(listPlayer, board ,isRunning);
+        game(g, board ,isRunning );
         //isRunning = 1;
     }
 

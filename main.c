@@ -4,19 +4,29 @@
 
 
 // void game(Player player){
-    
+
+//     //Check if grid is full
 //     if (GridIsFull())
 //     {
 //         printf("Gris is full, equality");
 //     }
-    
+
+//     //Select column  
 //     int Column = SelectColumn();
 
+//     // Upgrade turn number player
 //     player->playedTurnCounter += 1;
 
+//     //Update matrix
 //     updateGrid();
+    
+//     //Display Board
 //     DisplayGrid();
+
+//     // Check if player win
 //     playerWin();
+
+//     // Repeat 
 //     game(Player player);
 // }
 

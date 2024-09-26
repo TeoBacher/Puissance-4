@@ -6,12 +6,13 @@
 
 
 int SelectColumn(Board board){
-    int select;
+    int select = 0;
     int column;
     while (select == 0)
     {
+        column = 0;
         printf("Select column : ");
-        scanf("%s",column);
+        scanf("%d",column);
         if (column <=0 || column >= board.column)
         {
             if (board.gameBoard[0][column] =! 0)

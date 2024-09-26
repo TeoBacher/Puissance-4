@@ -6,8 +6,9 @@
 typedef struct {
     int row;
     int column;
+    int **gameBoard;
 } Board;
 
-void initBoard(int rows, int columns);
+Board initBoard(int rows, int columns);
 
 #endif

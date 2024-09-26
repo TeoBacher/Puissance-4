@@ -46,6 +46,7 @@ void updateBoard(Board* board,int player,int column){
             // Put the player index in the cell
             board->gameBoard[i][column]= player;
             isWin(board, player);
+            break;
         }
 
     }

@@ -11,10 +11,15 @@ int SelectColumn(Board* board){
     while (select == 0)
     {
         column = 0;
+
+        // ask column to player
         printf("Select column : ");
         scanf("%d",&column);
+
+        //  check if column is in matrix
         if (column <=0 || column >= board->column)
         {
+            // check if column is full
             if (board->gameBoard[0][column] != 0)
             {
                 printf("Column is full");
@@ -42,7 +47,7 @@ void game(Game *g, Board* board, int isRunning){
 
 
 
-        for (int i = 0; i < g->playerCount; i++)
+        for (int i = 1; i < g->playerCount; i++)
         {
                     // //    Check if grid is full
         // if (GridIsFull())
@@ -54,8 +59,20 @@ void game(Game *g, Board* board, int isRunning){
 
             //Select column  
             int column = SelectColumn(board);
+
+            printf("column : %d \n", column);
             // Update matrix
             updateBoard(board, i, column);
+
+            for (int k = 0; k < board->row; k++)
+            {
+                for (int j = 0; j < board->column; j++)
+                {
+                    printf("%d ",board->gameBoard[k][j]);
+                }
+                printf("\n ");
+            }
+            
         }
     }
     
@@ -104,8 +121,9 @@ int main(void)
         Board* board = initBoard(6,7);
 
         menu = 0;
+        isRunning = 1;
         game(g, board ,isRunning );
-        //isRunning = 1;
+        
     }
 
     return 0;

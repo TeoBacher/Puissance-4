@@ -13,4 +13,6 @@ typedef struct {
 
 Player *InitPlayer(int nbrPlayer);
 
+
+
 #endif

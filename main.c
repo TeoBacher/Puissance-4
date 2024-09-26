@@ -2,6 +2,25 @@
 #include "game.h"
 #include "player.h"
 
+
+// void game(Player player){
+    
+//     if (GridIsFull())
+//     {
+//         printf("Gris is full, equality");
+//     }
+    
+//     int Column = SelectColumn();
+
+//     player->playedTurnCounter += 1;
+
+//     updateGrid();
+//     DisplayGrid();
+//     playerWin();
+//     game(Player player);
+// }
+
+
 int main(void)
 {
     int menu = 1;

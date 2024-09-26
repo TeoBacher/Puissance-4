@@ -10,8 +10,10 @@ typedef struct {
     int **gameBoard;
 } Board;
 
-Board* initBoard(int rows, int columns);
+Board* initBoard(int rows, int columns, int length);
 
 void updateBoard(Board* board,int player,int column);
+
+int isWin(Board* board, int player);
 
 #endif

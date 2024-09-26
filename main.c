@@ -40,14 +40,14 @@ int SelectColumn(Board* board){
 
 
 
-void game(Game *g, Board* board, int isRunning){
+void game(Game *g, int isRunning){
  
     while (isRunning)
     {
 
 
 
-        for (int i = 1; i < g->playerCount; i++)
+        for (int i = 1; i <= g->playerCount; i++)
         {
                     // //    Check if grid is full
         // if (GridIsFull())
@@ -57,18 +57,20 @@ void game(Game *g, Board* board, int isRunning){
         //     isRunning = 0;
         // }
 
+            printf("Player %d : %s\n", i, g->players[i-1]->name);
+
             //Select column  
-            int column = SelectColumn(board);
+            int column = SelectColumn(g->board);
 
             printf("column : %d \n", column);
             // Update matrix
-            updateBoard(board, i, column);
+            updateBoard(g->board, i, column);
 
-            for (int k = 0; k < board->row; k++)
+            for (int k = 0; k < g->board->row; k++)
             {
-                for (int j = 0; j < board->column; j++)
+                for (int j = 0; j < g->board->column; j++)
                 {
-                    printf("%d ",board->gameBoard[k][j]);
+                    printf("%d ",g->board->gameBoard[k][j]);
                 }
                 printf("\n ");
             }
@@ -118,11 +120,11 @@ int main(void)
         }
 
         // Init board (default 6x7)
-        Board* board = initBoard(6,7);
+        g->board = initBoard(6, 7, 4);
 
         menu = 0;
         isRunning = 1;
-        game(g, board ,isRunning );
+        game(g,isRunning);
         
     }
 

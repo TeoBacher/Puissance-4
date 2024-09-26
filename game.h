@@ -3,10 +3,11 @@
 
 #include "board.h"
 
-typedef struct {
+typedef struct
+{
     Player **players;
     int playerCount;
     Board *board;
-} ;
+} Game;
 
 #endif

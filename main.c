@@ -1,35 +1,36 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "game.h"
 #include "player.h"
 
 
-// void game(Player player){
+void game(Player *player, int isRunning){
 
-//     //Check if grid is full
-//     if (GridIsFull())
-//     {
-//         printf("Gris is full, equality");
-//     }
+    //Check if grid is full
+    if (GridIsFull())
+    {
+        printf("Gris is full, equality");
+        isRunning = 0;
+    }
 
-//     //Select column  
-//     int Column = SelectColumn();
+    //Select column  
+    int Column = SelectColumn();
 
-//     // Upgrade turn number player
-//     player->playedTurnCounter += 1;
+    // Upgrade turn number player
+    player->playedTurnCounter += 1;
 
-//     //Update matrix
-//     updateGrid();
+    //Update matrix
+    updateGrid();
     
-//     //Display Board
-//     DisplayGrid();
+    //Display Board
+    DisplayGrid();
 
-//     // Check if player win
-//     playerWin();
+    // Check if player win
+    playerWin();
 
-//     // Repeat 
-//     game(Player player);
-// }
-
+    // Repeat 
+    game(player, isRunning);
+}
 
 int main(void)
 {
@@ -40,6 +41,8 @@ int main(void)
     // Init menu
     while (menu)
     {
+        Player **listPlayer = malloc(sizeof(Player));
+
         int countPlayer;
         printf("Bienvenu dans le jeu 'PUISSANCE 4\n");
         scanf("");
@@ -51,7 +54,7 @@ int main(void)
 
         for (int i = 0; i < countPlayer; i++)
         {
-            InitPlayer(i);
+            listPlayer[i] = InitPlayer(i);
         }
 
         // Init grid (board)
@@ -64,6 +67,8 @@ int main(void)
     while (isRunning)
     {
         printf("Début du jeu\n");
+        // game();
+
         // Check if grid is full, if so, end game
 
         // for each player

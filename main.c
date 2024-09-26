@@ -3,7 +3,6 @@
 #include "game.h"
 #include "player.h"
 
-
 void game(Player *player){
 
     //Check if grid is full
@@ -49,6 +48,17 @@ int main(void)
         printf("Entrer le nombre de joueur : ");
         scanf("%d", &playerCount);
 
+        // Min 2 players
+        if (playerCount < 2)
+        {
+            printf("Il faut au moins 2 joueurs pour jouer\n");
+            continue;
+        } else if (playerCount > 6)
+        {
+            printf("Il ne peut y avoir plus de 6 joueurs\n");
+            continue;
+        }
+
         for (int i = 0; i < playerCount; i++)
         {
             listPlayer[i] = InitPlayer(i);
@@ -57,7 +67,7 @@ int main(void)
         // Display player
         for (int i = 0; i < playerCount; i++)
         {
-            printf("Joueur %d : %s\n", i, listPlayer[i]->name);
+            printf("Joueur %d : %s\n", i+1, listPlayer[i]->name);
         }
 
         // Init board (default 6x7)

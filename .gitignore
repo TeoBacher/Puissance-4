@@ -1,2 +1,5 @@
 .idea
 .vscode
+player.h.gch
+board.h.gch
+game.h.gch

@@ -11,4 +11,6 @@ typedef struct {
 
 Board initBoard(int rows, int columns);
 
+void updateBoard( Board board,int player,int column);
+
 #endif

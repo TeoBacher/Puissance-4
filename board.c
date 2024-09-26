@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include "board.h"
 
-
-Board *initBoard(int rows, int columns) {
+Board* initBoard(int rows, int columns) {
     if (rows < 2 || columns < 2) {
         printf("La grille de jeux ne peut pas être plus petite que 2 x 2 !\n");
         // TODO 200 : call back menu to avoid crash
@@ -37,7 +36,7 @@ Board *initBoard(int rows, int columns) {
     return board;
 }
 
-void updateGrid( Board board,int player,int column){
+void updateBoard( Board board,int player,int column){
     for (int i = column; i >= 0; i--)
     {
         if (board.gameBoard[i][column]==0)

@@ -7,7 +7,7 @@
 
 int SelectColumn(Board board){
     int select = 0;
-    int column;
+    int column = 0;
     while (select == 0)
     {
         column = 0;
@@ -15,7 +15,7 @@ int SelectColumn(Board board){
         scanf("%d",column);
         if (column <=0 || column >= board.column)
         {
-            if (board.gameBoard[0][column] =! 0)
+            if (board.gameBoard[0][column] != 0)
             {
                 printf("Column is full");
                 continue;
@@ -55,12 +55,8 @@ void game(Game *g, Board board, int isRunning){
             //Select column  
             int column = SelectColumn(board);
             // Update matrix
-            updateGrid(board, i, column);
+            updateBoard(board, i, column);
         }
-        
-
-
-    
     }
     
 

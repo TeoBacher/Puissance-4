@@ -37,11 +37,12 @@ Board* initBoard(int rows, int columns) {
 }
 
 void updateBoard(Board* board,int player,int column){
-    for (int i = column; i >= 0; i--)
+    for (int i = board->row - 1 ; i >= 0; i--)
     {
-        if (board->gameBoard[i][column]==0)
+        if (board->gameBoard[i][column-1]==0)
         {
-            board->gameBoard[i][column]= player;
+            board->gameBoard[i][column-1]= player; 
+            break;
         }
         
     }

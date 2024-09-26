@@ -6,7 +6,8 @@
 typedef struct {
     int row;
     int column;
-    Player **state;
 } Board;
+
+void initBoard(int rows, int columns);
 
 #endif

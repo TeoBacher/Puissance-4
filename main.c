@@ -4,70 +4,74 @@
 #include "player.h"
 
 
-void game(Player *player, int isRunning){
+void game(Player *player){
 
     //Check if grid is full
-    if (GridIsFull())
-    {
-        printf("Gris is full, equality");
-        isRunning = 0;
-    }
+    // if (GridIsFull())
+    // {
+    //     printf("Gris is full, equality");
+    //     isRunning = 0;
+    // }
 
     //Select column  
-    int Column = SelectColumn();
+    //int Column = SelectColumn();
 
     // Upgrade turn number player
     player->playedTurnCounter += 1;
 
     //Update matrix
-    updateGrid();
+    //updateGrid();
     
     //Display Board
-    DisplayGrid();
+    //DisplayGrid();
 
     // Check if player win
-    playerWin();
+    //playerWin();
 
     // Repeat 
-    game(player, isRunning);
+    //game(player, isRunning);
 }
 
 int main(void)
 {
     int menu = 1;
-    int isRunning = 0;
-    printf("Puissance C\n");
+    //int isRunning = 0;
 
     // Init menu
     while (menu)
     {
         Player **listPlayer = malloc(sizeof(Player));
 
-        int countPlayer;
+        int playerCount = 0;
         printf("Bienvenu dans le jeu 'PUISSANCE 4\n");
-        scanf("");
-        // fontion pour clear terminal
 
-        // les joueur doivent donner speudo
-        printf("Entrer le nombre de joueur : \n");
-        scanf("->%d", &countPlayer);
+        // Number of player
+        printf("Entrer le nombre de joueur : ");
+        scanf("%d", &playerCount);
 
-        for (int i = 0; i < countPlayer; i++)
+        for (int i = 0; i < playerCount; i++)
         {
             listPlayer[i] = InitPlayer(i);
         }
 
-        // Init grid (board)
+        // Display player
+        for (int i = 0; i < playerCount; i++)
+        {
+            printf("Joueur %d : %s\n", i, listPlayer[i]->name);
+        }
+
+        // Init board (default 6x7)
+        initBoard(6, 7);
 
         menu = 0;
-        isRunning = 1;
+        //isRunning = 1;
     }
 
     // Game loop
-    while (isRunning)
-    {
-        printf("Début du jeu\n");
-        // game();
+    // while (isRunning)
+    // {
+    //     printf("Début du jeu\n");
+        //game();
 
         // Check if grid is full, if so, end game
 
@@ -80,6 +84,6 @@ int main(void)
         // Check if player won
 
         // Repeat
-    }
+    //}
     return 0;
 }

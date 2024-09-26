@@ -10,4 +10,7 @@ typedef struct {
     int score;
 } Player;
 
+
+Player *InitPlayer(int nbrPlayer);
+
 #endif

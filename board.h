@@ -6,6 +6,7 @@
 typedef struct {
     int row;
     int column;
+    int length;
     int **gameBoard;
 } Board;
 

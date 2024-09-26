@@ -5,17 +5,17 @@
 #include "board.h"
 
 
-int SelectColumn(Board board){
+int SelectColumn(Board* board){
     int select = 0;
     int column = 0;
     while (select == 0)
     {
         column = 0;
         printf("Select column : ");
-        scanf("%d",column);
-        if (column <=0 || column >= board.column)
+        scanf("%d",&column);
+        if (column <=0 || column >= board->column)
         {
-            if (board.gameBoard[0][column] != 0)
+            if (board->gameBoard[0][column] != 0)
             {
                 printf("Column is full");
                 continue;
@@ -35,7 +35,7 @@ int SelectColumn(Board board){
 
 
 
-void game(Game *g, Board board, int isRunning){
+void game(Game *g, Board* board, int isRunning){
  
     while (isRunning)
     {
@@ -87,7 +87,7 @@ int main(void)
 
         // Number of player
         printf("Entrer le nombre de joueur : ");
-        scanf("%d", g->playerCount);
+        scanf("%d", &g->playerCount);
 
         for (int i = 0; i < g->playerCount; i++)
         {
@@ -101,7 +101,7 @@ int main(void)
         }
 
         // Init board (default 6x7)
-        Board board = initBoard(6,7);
+        Board* board = initBoard(6,7);
 
         menu = 0;
         game(g, board ,isRunning );

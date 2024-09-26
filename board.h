@@ -9,8 +9,8 @@ typedef struct {
     int **gameBoard;
 } Board;
 
-Board initBoard(int rows, int columns);
+Board* initBoard(int rows, int columns);
 
-void updateBoard( Board board,int player,int column);
+void updateBoard(Board* board,int player,int column);
 
 #endif

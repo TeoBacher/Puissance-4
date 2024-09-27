@@ -4,6 +4,7 @@
 #include "player.h"
 #include "board.h"
 
+// free all game
 void freeGame(Game *g){
     for (int i = 0; i < g->playerCount; i++)
     {
@@ -14,6 +15,7 @@ void freeGame(Game *g){
     free(g);
 }
 
+// Select column
 int SelectColumn(Board* board){
     int select = 0;
     int column = 0;
@@ -27,9 +29,8 @@ int SelectColumn(Board* board){
 
         //  check if column is in matrix
         if (column <=0 || column >= board->column)
-        {
-            
-                printf("error");
+        { 
+            printf("error");
             continue;
         }
         // check if column is full
@@ -52,11 +53,11 @@ void game(Game *g){
     {
         for (int i = 1; i <= g->playerCount; i++)
         {
-            // if (GridIsFull())
-            // {
-            //     printf("Gris is full, equality");
-            //     currentStatus = END;
-            // }
+            if (isBoardFull(g->board))
+            {
+                printf("Gris is full, equality");
+                currentStatus = END;
+            }
 
             printf("Player %d : %s\n", i, g->players[i-1]->name);
 
@@ -78,12 +79,37 @@ void game(Game *g){
             
         }
     }
+
+    if (currentStatus == END)
+    {
+        printf("Game Over\n");
+        freeGame(g);
+        printf("Play again ?\n 1 : Yes\n 2 : No\n");
+        int choice = 0;
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            currentStatus = START;
+            freeGame(g);
+            break;
+        case 2:
+            printf("Goodbye\n");
+            freeGame(g);
+            break;
+        default:
+            printf("Wrong choice, goodbye!\n");
+            freeGame(g);
+            break;
+        }
+    }
+
     //Display Board
     //DisplayGrid();
 }
 
 
-int main(void)
+int main()
 {
     Game *g = malloc(sizeof(game));
 

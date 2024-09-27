@@ -10,10 +10,22 @@ void freeBoard(Board* board) {
     free(board);
 }
 
+// Check if the grid is full
+int isBoardFull(Board* board) {
+    for (int row = 0; row < board->row; row++) {
+        for (int col = 0; col < board->column; col++) {
+            if (board->gameBoard[row][col] == 0) { 
+                return 0;
+            }
+        }
+    }
+    return 1; 
+}
+
 Board* initBoard(int rows, int columns, int length) {
     if (rows < 2 || columns < 2) {
         printf("La grille de jeux ne peut pas être plus petite que 2 x 2 !\n");
-        // TODO 200 : call back menu to avoid crash
+        currentStatus = START;
     }
 
     Board *board = malloc(sizeof(Board));
@@ -60,8 +72,6 @@ void updateBoard(Board* board, int player, int column){
 
 // Win detection
 void isWin(Board* board, int player) {
-
-    printf("Win check for : %d\n", player);
 
     // Horizontal check
     for (int row = 0; row < board->row; row++) {
@@ -117,7 +127,7 @@ void isWin(Board* board, int player) {
         }
     }
 
-    // Vérification diagonale (haut-droite)
+    // Check diagonal (bottom-right)
     for (int row = board->length - 1; row < board->row; row++) {
         for (int col = 0; col <= board->column - board->length; col++) {
             int count = 0;

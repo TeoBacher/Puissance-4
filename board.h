@@ -8,6 +8,7 @@ typedef struct {
     int column;
     int length;
     int **gameBoard;
+    int winner;
 } Board;
 
 Board* initBoard(int rows, int columns, int length);

@@ -19,8 +19,9 @@ enum GameStatus
 {
     START = 0,
     PLAY = 1,
-    END = 2,
-    SIZE = 3
+    WIN = 2,
+    EQUALITY = 3,
+    END = 4,
 };
 
 extern enum GameStatus currentStatus;

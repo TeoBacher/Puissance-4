@@ -78,8 +78,8 @@ void isWin(Board* board, int player) {
                 }
             }
             if (count == board->length) {
-                printf("Player %d win by horizontal !\n", player);
-                currentStatus = END;
+                board->winner = player;
+                currentStatus = WIN;
             }
         }
     }
@@ -96,8 +96,8 @@ void isWin(Board* board, int player) {
                 }
             }
             if (count == board->length) {
-                printf("Player %d win by vertical !\n", player);
-                currentStatus = END;
+                board->winner = player;
+                currentStatus = WIN;
             }
         }
     }
@@ -114,8 +114,8 @@ void isWin(Board* board, int player) {
                 }
             }
             if (count == board->length) {
-                printf("Player %d win by diagonal !\n", player);
-                currentStatus = END;
+                board->winner = player;
+                currentStatus = WIN;
             }
         }
     }
@@ -132,8 +132,8 @@ void isWin(Board* board, int player) {
                 }
             }
             if (count == board->length) {
-                printf("Player %d win by diagonal !\n", player);
-                currentStatus = END;
+                board->winner = player;
+                currentStatus = WIN;
             }
         }
     }

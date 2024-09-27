@@ -14,6 +14,26 @@ void freeGame(Game *g){
     free(g);
 }
 
+void endGame(Game *g){
+    printf("\nPartie terminée !\n\n");
+    freeGame(g);
+    printf("Voulez-vous rejouer ?\n 1 : Oui\n 2 : Non\n");
+    int choice = 0;
+    scanf("%d", &choice);
+    switch (choice)
+    {
+    case 1:
+        currentStatus = START;
+        break;
+     case 2:
+        printf("Aurevoir !\n");
+        break;
+    default:
+        printf("Mauvais choix, aurevoir !\n");
+        break;
+    }
+}
+
 // Select column
 int SelectColumn(Board* board){
     int select = 0;
@@ -33,7 +53,7 @@ int SelectColumn(Board* board){
             continue;
         }
         // check if column is full
-        else if (board->gameBoard[0][column] != 0)
+        else if (board->gameBoard[0][column-1] != 0)
         {
             printf("La colonne est pleine, veuillez en choisir une autre !");
             continue;
@@ -52,14 +72,14 @@ void game(Game *g){
     {
         for (int i = 1; i <= g->playerCount; i++)
         {
-            if (currentStatus == END)
+            if (currentStatus != PLAY)
             {
                 break;
             }
             
             if (isBoardFull(g->board))
             {
-                printf("Gris is full, equality");
+                printf("Grille pleine, match nul !\n");
                 currentStatus = END;
             }
 
@@ -87,26 +107,24 @@ void game(Game *g){
         }
     }
 
-    if (currentStatus == END)
+    switch (currentStatus)
     {
-        system("clear");
-        printf("Game Over\n");
-        freeGame(g);
-        printf("Play again ?\n 1 : Yes\n 2 : No\n");
-        int choice = 0;
-        scanf("%d", &choice);
-        switch (choice)
-        {
+        case 0:
+            break;
         case 1:
-            currentStatus = START;
             break;
         case 2:
-            printf("Goodbye\n");
+            system("clear");
+            printf("%s remporte la partie !\n", g->players[g->board->winner - 1]->name);
+            endGame(g);
             break;
-        default:
-            printf("Wrong choice, goodbye!\n");
+        case 3:
+            system("clear");
+            printf("Égalité !\n");
+            endGame(g);
             break;
-        }
+        case 4:
+            break;
     }
 }
 
@@ -132,8 +150,36 @@ int main()
 
         system("clear");
 
-        // Init board (default 6x7)
-        g->board = initBoard(6, 7, 4);
+        int gameMode = 0;
+        printf("Choisissez le mode de jeu :\n 1 : Puissance 4\n 2 : Puissance X\n");
+        scanf("%d", &gameMode);
+
+        switch (gameMode)
+        {
+            case 1:
+                g->board = initBoard(6, 7, 4);
+                break;
+            case 2:
+                system("clear");
+                printf("Choisissez la taille de la grille et du nombre de jeton pour gagner !\n");
+                int rows = 0;
+                int columns = 0;
+                int length = 0;
+                printf("\n\nNombre de lignes : ");
+                scanf("%d", &rows);
+                printf("\nNombre de colonnes : ");
+                scanf("%d", &columns);
+                printf("\nNombre de jeton pour gagner : ");
+                scanf("%d", &length);
+                system("clear");
+
+                // Init board (default 6x7)
+                g->board = initBoard(rows, columns, length);
+                break;
+            default:
+                printf("Choix invalide, veuillez recommencer !\n");
+                break;
+        }
 
         // Display board
         displayBoard(g->players, g->board);

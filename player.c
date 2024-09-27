@@ -53,7 +53,8 @@ Player *InitPlayer(int nbrPlayer) {
     // Get player name
     int valid = 0;
     while (!valid) {
-        printf("Choisissez votre pseudo (maximum %d caractères, uniquement lettres et/ou chiffres) : ", MAX_NAME_LENGTH);
+        clearScreen();
+        printf("Joueurs n°%d, choisissez votre pseudo : ", nbrPlayer+1);
         scanf("%s", player->name);
 
         // Delete the \n

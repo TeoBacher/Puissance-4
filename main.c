@@ -10,7 +10,6 @@ void freeGame(Game *g){
     {
         freePlayer(g->players[i]);
     }
-    free(g->players);
     freeBoard(g->board);
     free(g);
 }
@@ -24,27 +23,27 @@ int SelectColumn(Board* board){
         column = 0;
 
         // ask column to player
-        printf("Select column : ");
+        printf("  Sélectionnez une colonne : ");
         scanf("%d",&column);
 
         //  check if column is in matrix
         if (column <=0 || column >= board->column)
         { 
-            printf("error");
+            printf("La colonne n'est pas dans la grille !\n");
             continue;
         }
         // check if column is full
         else if (board->gameBoard[0][column] != 0)
         {
-            printf("Column is full");
+            printf("La colonne est pleine, veuillez en choisir une autre !");
             continue;
         }
         else{
             select = 1 ;
         }
     }
+    system("clear");
     return column;
-    
 }
 
 void game(Game *g){
@@ -53,21 +52,34 @@ void game(Game *g){
     {
         for (int i = 1; i <= g->playerCount; i++)
         {
+            if (currentStatus == END)
+            {
+                break;
+            }
+            
             if (isBoardFull(g->board))
             {
                 printf("Gris is full, equality");
                 currentStatus = END;
             }
 
-            printf("Player %d : %s\n", i, g->players[i-1]->name);
+            printf("\n");
+
+            for (int i = 0; i < g->board->column; i++)
+            {
+                printf("=====");
+            }
+            
+            printf("\n\n  C'est au tour de %d : %s, votre signe est : ", i, g->players[i-1]->name);
+            printf("%s", g->players[i-1]->color);
+            printf("%s\n", g->players[i-1]->token);
+            printf("\033[0;37m");
 
             //Select column  
             int column = SelectColumn(g->board);
 
-            printf("column : %d \n", column);
             // Update matrix
             updateBoard(g->board, i, column);
-
 
             //Display Board
             displayBoard(g->players, g->board);
@@ -77,6 +89,7 @@ void game(Game *g){
 
     if (currentStatus == END)
     {
+        system("clear");
         printf("Game Over\n");
         freeGame(g);
         printf("Play again ?\n 1 : Yes\n 2 : No\n");
@@ -86,34 +99,27 @@ void game(Game *g){
         {
         case 1:
             currentStatus = START;
-            freeGame(g);
             break;
         case 2:
             printf("Goodbye\n");
-            freeGame(g);
             break;
         default:
             printf("Wrong choice, goodbye!\n");
-            freeGame(g);
             break;
         }
     }
-
-    //Display Board
-    //DisplayGrid();
 }
-
 
 int main()
 {
-    Game *g = malloc(sizeof(game));
-
     // Init menu
     while (currentStatus == START)
     {
+        Game *g = malloc(sizeof(game));
         g->players = malloc(sizeof(Player)*6);
 
-        printf("Bienvenu dans le jeu 'PUISSANCE 4\n");
+        system("clear");
+        printf("Bienvenu(e) dans PUISSANCE C !\n\n");
 
         // Number of player
         printf("Entrer le nombre de joueur : ");
@@ -124,14 +130,13 @@ int main()
             g->players[i] = InitPlayer(i);
         }
 
-        // Display player
-        for (int i = 0; i < g->playerCount; i++)
-        {
-            printf("Joueur %d : %s\n", i, g->players[i]->name);
-        }
+        system("clear");
 
         // Init board (default 6x7)
         g->board = initBoard(6, 7, 4);
+
+        // Display board
+        displayBoard(g->players, g->board);
 
         currentStatus = PLAY;
         game(g);

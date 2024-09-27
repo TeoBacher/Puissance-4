@@ -20,4 +20,6 @@ void freeBoard(Board* board);
 
 void displayBoard(Player **players, Board *board);
 
+int isBoardFull(Board* board);
+
 #endif

@@ -18,4 +18,6 @@ void isWin(Board* board, int player);
 
 void freeBoard(Board* board);
 
+void displayBoard(Player **players, Board *board);
+
 #endif

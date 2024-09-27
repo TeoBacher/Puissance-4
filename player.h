@@ -4,6 +4,7 @@
 typedef struct {
     char *color;
     char *name;
+    char *token;
     int playedTurnCounter;
 
     // Optional

@@ -33,14 +33,7 @@ Board* initBoard(int rows, int columns, int length) {
         board->gameBoard[i] = calloc(columns, sizeof(int));
     }
 
-    // Print the game board
-    // TODO DELETE
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            printf("%d ", board->gameBoard[i][j]);
-        }
-        printf("\n");
-    }
+
 
     return board;
 }
@@ -134,4 +127,26 @@ void isWin(Board* board, int player) {
             }
         }
     }
+}
+
+void displayBoard(Player **players, Board *board){
+    for (int i = 0; i < board->row ; i++)
+    {
+        for (int j = 0; j < board->column; j++)
+        {
+            int p = board->gameBoard[i][j];
+            if (p == 0)
+            {
+               printf("|   ");
+               continue;
+            }
+            printf("|");
+            printf("%s", players[p-1]->color);
+            printf(" %s ",players[p-1]->token);
+            printf("\033[0;37m");
+            
+        }
+        printf("|\n");
+    }
+    
 }

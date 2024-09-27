@@ -67,19 +67,13 @@ void game(Game *g){
             // Update matrix
             updateBoard(g->board, i, column);
 
-            for (int k = 0; k < g->board->row; k++)
-            {
-                for (int j = 0; j < g->board->column; j++)
-                {
-                    printf("%d ",g->board->gameBoard[k][j]);
-                }
-                printf("\n ");
-            }
+
+            //Display Board
+            displayBoard(g->players, g->board);
             
         }
     }
-    //Display Board
-    //DisplayGrid();
+
 }
 
 

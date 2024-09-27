@@ -34,7 +34,7 @@ void clearScreen() {
 Player *InitPlayer(int nbrPlayer) {
     // Tab of color
     char *color[] = {"\033[0;31m", "\033[0;32m", "\033[0;33m", "\033[0;34m", "\033[0;35m", "\033[0;36m"};
-
+    char *token[] = {"X","O","&","/","^","£"};
     // Add dynamic memory for player
     Player *player = malloc(sizeof(Player));
     if (!player) {
@@ -88,6 +88,9 @@ Player *InitPlayer(int nbrPlayer) {
 
     // Set player color
     player->color = color[nbrPlayer];
+
+    // Set player token
+    player->token = token[nbrPlayer];
 
     // Init player turn counter
     player->playedTurnCounter = 0;

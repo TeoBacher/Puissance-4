@@ -4,8 +4,16 @@
 #include <ctype.h>
 #include "player.h"
 
+// Enum for game status
+enum GameStatus currentStatus;
+
 // Max length player name
 #define MAX_NAME_LENGTH 29 
+
+void freePlayer(Player *player) {
+    free(player->name);
+    free(player);
+}
 
 // Check if the name contains only alphanumeric characters
 int isValidName(const char *name) {

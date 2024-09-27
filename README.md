@@ -7,6 +7,7 @@
 Puissance 4 fonctionnel en CLI.
 
 Fichier de configuration pour les paramètres du jeu :
+
 - Taille de la grille
 - Nombre de pions à aligner pour gagner
 - Nombre de joueurs
@@ -16,12 +17,12 @@ Fichier de configuration pour les paramètres du jeu :
 - Choix du jeux classique (Puisance 4) ou personnalisé (Puissance X)
 - `Animation` de la chute des pions
 - Couleur des pions en fonction du joueur
-- Sauvergarde des scores dans un fichier / leaderboard
 - Menu Help
+- Sauvergarde des scores dans un fichier / leaderboard (si le temps)
 
 ### Bonus à la con
 
-- `IA` pour jouer contre l'ordinateur
+- `IA` pour jouer contre l'ordinateur (mdr ça va être chaud) (si le temps++++++++++++++)
 
 ## Principes techniques
 
@@ -41,10 +42,3 @@ Fonction pour vérifier si la grille est pleine, donc match nul.
 - Update la grille
 - Vérifier si le joueur a gagné (4 pions alignés), ligne, colonne, diagonale
 - Passer au joueur suivant
-
-## Structure
-
-Joueur :
-- Nom
-- Couleur
-- 

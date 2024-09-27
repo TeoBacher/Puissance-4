@@ -10,9 +10,18 @@ typedef struct {
     int score;
 } Player;
 
-
 Player *InitPlayer(int nbrPlayer);
 
+void freePlayer(Player *player);
 
+enum GameStatus
+{
+    START = 0,
+    PLAY = 1,
+    END = 2,
+    SIZE = 3
+};
+
+extern enum GameStatus currentStatus;
 
 #endif

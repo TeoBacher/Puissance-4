@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include "board.h"
 
+void freeBoard(Board* board) {
+    for (int i = 0; i < board->row; i++) {
+        free(board->gameBoard[i]);
+    }
+    free(board->gameBoard);
+    free(board);
+}
+
 Board* initBoard(int rows, int columns, int length) {
     if (rows < 2 || columns < 2) {
         printf("La grille de jeux ne peut pas être plus petite que 2 x 2 !\n");
@@ -51,7 +59,7 @@ void updateBoard(Board* board, int player, int column){
 }
 
 // Win detection
-int isWin(Board* board, int player) {
+void isWin(Board* board, int player) {
 
     printf("Win check for : %d\n", player);
 
@@ -68,7 +76,7 @@ int isWin(Board* board, int player) {
             }
             if (count == board->length) {
                 printf("Player %d win by horizontal !\n", player);
-                return 1;
+                currentStatus = END;
             }
         }
     }
@@ -86,7 +94,7 @@ int isWin(Board* board, int player) {
             }
             if (count == board->length) {
                 printf("Player %d win by vertical !\n", player);
-                return 1;
+                currentStatus = END;
             }
         }
     }
@@ -99,12 +107,12 @@ int isWin(Board* board, int player) {
                 if (board->gameBoard[row + i][col + i] == player) {
                     count++;
                 } else {
-                    printf("Player %d win by diagonal !\n", player);
                     break;
                 }
             }
             if (count == board->length) {
-                return 1;
+                printf("Player %d win by diagonal !\n", player);
+                currentStatus = END;
             }
         }
     }
@@ -122,10 +130,8 @@ int isWin(Board* board, int player) {
             }
             if (count == board->length) {
                 printf("Player %d win by diagonal !\n", player);
-                return 1;
+                currentStatus = END;
             }
         }
     }
-
-    return 0;
 }

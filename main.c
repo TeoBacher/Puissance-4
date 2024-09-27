@@ -4,6 +4,15 @@
 #include "player.h"
 #include "board.h"
 
+void freeGame(Game *g){
+    for (int i = 0; i < g->playerCount; i++)
+    {
+        freePlayer(g->players[i]);
+    }
+    free(g->players);
+    freeBoard(g->board);
+    free(g);
+}
 
 int SelectColumn(Board* board){
     int select = 0;
@@ -37,24 +46,17 @@ int SelectColumn(Board* board){
     
 }
 
-
-
-void game(Game *g, int isRunning){
+void game(Game *g){
  
-    while (isRunning)
+    while (currentStatus == PLAY)
     {
-
-
-
         for (int i = 1; i <= g->playerCount; i++)
         {
-                    // //    Check if grid is full
-        // if (GridIsFull())
-        // {
-        //     // call function endgame()
-        //     printf("Gris is full, equality");
-        //     isRunning = 0;
-        // }
+            // if (GridIsFull())
+            // {
+            //     printf("Gris is full, equality");
+            //     currentStatus = END;
+            // }
 
             printf("Player %d : %s\n", i, g->players[i-1]->name);
 
@@ -76,29 +78,18 @@ void game(Game *g, int isRunning){
             
         }
     }
-    
-
     //Display Board
     //DisplayGrid();
-
-    // Check if player win
-    //playerWin();
-
-    // Repeat 
-    //game(player, isRunning);
 }
 
 
 int main(void)
 {
-    int menu = 1;
-    int isRunning = 0;
+    Game *g = malloc(sizeof(game));
 
     // Init menu
-    while (menu)
+    while (currentStatus == START)
     {
-        Game *g = malloc(sizeof(game));
-
         g->players = malloc(sizeof(Player)*6);
 
         printf("Bienvenu dans le jeu 'PUISSANCE 4\n");
@@ -121,9 +112,8 @@ int main(void)
         // Init board (default 6x7)
         g->board = initBoard(6, 7, 4);
 
-        menu = 0;
-        isRunning = 1;
-        game(g,isRunning);
+        currentStatus = PLAY;
+        game(g);
         
     }
 

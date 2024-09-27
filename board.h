@@ -14,6 +14,8 @@ Board* initBoard(int rows, int columns, int length);
 
 void updateBoard(Board* board,int player,int column);
 
-int isWin(Board* board, int player);
+void isWin(Board* board, int player);
+
+void freeBoard(Board* board);
 
 #endif
